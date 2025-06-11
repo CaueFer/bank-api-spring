@@ -1,4 +1,4 @@
-package com.bananapay.bananapay.account.dto.request;
+package com.bananapay.bananapay.account.domain.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

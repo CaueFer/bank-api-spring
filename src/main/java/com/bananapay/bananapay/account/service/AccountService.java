@@ -1,14 +1,14 @@
 package com.bananapay.bananapay.account.service;
 
-import com.bananapay.bananapay.account.dto.response.AccountResponse;
-import com.bananapay.bananapay.account.model.Account;
+import com.bananapay.bananapay.account.domain.dto.response.AccountResponse;
+import com.bananapay.bananapay.account.domain.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.stereotype.Service;
 
 import com.bananapay.bananapay.account.repository.AccountRepository;
-import com.bananapay.bananapay.account.dto.request.CreateAccountDTO;
+import com.bananapay.bananapay.account.domain.dto.request.CreateAccountDTO;
 
 import java.util.Optional;
 

@@ -1,6 +1,6 @@
 package com.bananapay.bananapay.account.repository;
 
-import com.bananapay.bananapay.account.model.Account;
+import com.bananapay.bananapay.account.domain.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

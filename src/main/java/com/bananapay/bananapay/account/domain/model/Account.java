@@ -1,4 +1,4 @@
-package com.bananapay.bananapay.account.model;
+package com.bananapay.bananapay.account.domain.model;
 
 
 import jakarta.persistence.*;

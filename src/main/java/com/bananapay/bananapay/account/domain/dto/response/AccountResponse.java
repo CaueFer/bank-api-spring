@@ -1,4 +1,4 @@
-package com.bananapay.bananapay.account.dto.response;
+package com.bananapay.bananapay.account.domain.dto.response;
 
 import java.util.UUID;
 

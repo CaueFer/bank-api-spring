@@ -10,8 +10,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
-@Table(name = "account")
 @Entity
+@Table(name = "account")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +20,11 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
+
     private String ownerName;
+
+    @Column(nullable = false, unique = true)
     private String ownerCpf;
+
     private Integer balance;
 }

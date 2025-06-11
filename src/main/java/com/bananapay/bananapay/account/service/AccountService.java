@@ -15,9 +15,11 @@ import java.util.Optional;
 @Service
 public class AccountService {
 
+    private final AccountRepository accountRepository;
 
-    @Autowired
-    private AccountRepository accountRepository;
+    public AccountService(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
 
     public void createAccount(CreateAccountDTO newAcc) {
         try {

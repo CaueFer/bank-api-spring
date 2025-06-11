@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import java.util.UUID;
 
@@ -26,5 +27,5 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String ownerCpf;
 
-    private Integer balance;
+    private Integer balance = 0;
 }

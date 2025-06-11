@@ -6,14 +6,19 @@ import com.bananapay.bananapay.account.domain.dto.response.AccountResponse;
 import com.bananapay.bananapay.account.domain.dto.response.ResponseMessage;
 import com.bananapay.bananapay.account.service.AccountService;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/account")
+@Validated
 public class AccountController {
 
     private final AccountService accountService;
@@ -29,7 +34,10 @@ public class AccountController {
     }
 
     @GetMapping("/{ownerCpf}")
-    public ResponseEntity<AccountResponse> getAccount(@PathVariable @Valid String ownerCpf) {
+    public ResponseEntity<AccountResponse> getAccount(@PathVariable
+                                                      @NotBlank(message = "Invalid CPF")
+                                                      @Size(min = 11, max = 11, message = "CPF must have 11 digits.")
+                                                      String ownerCpf) {
         return ResponseEntity.status(HttpStatus.OK).body(accountService.findAccountByCpf(ownerCpf));
     }
 }

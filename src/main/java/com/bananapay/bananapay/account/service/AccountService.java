@@ -1,5 +1,6 @@
 package com.bananapay.bananapay.account.service;
 
+import com.bananapay.bananapay.account.dto.response.AccountResponse;
 import com.bananapay.bananapay.account.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class AccountService {
     @Autowired
     private AccountRepository accountRepository;
 
-    public String createAccount(CreateAccountDTO newAcc) {
+    public void createAccount(CreateAccountDTO newAcc) {
         try {
             Optional<Account> existedAcc = this.accountRepository.findByOwnerCpf(newAcc.getOwnerCpf());
             if (existedAcc.isPresent())
@@ -29,12 +30,24 @@ public class AccountService {
             account.setOwnerCpf(newAcc.getOwnerCpf());
 
             this.accountRepository.save(account);
-            return "Account created.";
         } catch (ResponseStatusException ex) {
             throw ex;
         } catch (Exception e) {
             System.out.println(e.toString());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error creating account.");
+        }
+    }
+
+    public AccountResponse findAccountByCpf(String ownerCpf) {
+        try {
+            Account account = this.accountRepository.findByOwnerCpf(ownerCpf).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "CPF not founded."));
+
+            return new AccountResponse(account.getId(), account.getOwnerName(), account.getOwnerCpf());
+        } catch (ResponseStatusException ex) {
+            throw ex;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error finding account.");
         }
     }
 
